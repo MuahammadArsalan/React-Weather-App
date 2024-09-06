@@ -26,7 +26,7 @@ function App(){
         
         
         weather.push(res)
-        setWeather(...[weather])
+        setWeather(weather , ...[weather]);
 
 console.log(weather);
 
@@ -46,9 +46,8 @@ return(
   
 <input type="text" placeholder="Enter city Name" ref={cityVal}/>
 <button onClick={getData}>Search</button>
-<h1>Bismillah</h1>
 
-{weather ? weather.map((item,index)=>{
+{weather.length > 0 ? weather.map((item,index)=>{
   
   return <div key={index}>
   
@@ -59,9 +58,6 @@ return(
   </div>
   
 }):<p>Loading....</p>}
-
-{/* last_updated */}
-{/* temp_c */}
 
 </div>
   
