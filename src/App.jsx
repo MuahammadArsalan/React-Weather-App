@@ -1,5 +1,5 @@
 import axios from "axios";
-import React,{ useRef, useState } from "react"
+import React,{ useEffect, useRef, useState } from "react"
 import Card from "./Components/Card";
 
 // 
@@ -15,28 +15,31 @@ function App(){
   let cityVal = useRef();
 
 
-  async function getData(e){
-    e.preventDefault()
+  async function getData(event){
+    // event.preventDefault();
+
+
     try {
       
       let res = await axios(`http://api.weatherapi.com/v1/current.json?key=244219279edd49bda5932642240509&q=${cityVal.current.value}&aqi=no
+       
         `)
         
-        console.log(res.data);
-        
-        
-        weather.push(res)
-        setWeather(weather , ...[weather]);
+        // console.log(res);
+       
+       weather.push(res);
 
+
+setWeather(...[weather],res) 
 console.log(weather);
-
+    
 
 
 } catch (error) {
 console.log(error);
 
 }
-  }
+}
 
 return(
 
@@ -46,6 +49,8 @@ return(
   
 <input type="text" placeholder="Enter city Name" ref={cityVal}/>
 <button onClick={getData}>Search</button>
+
+
 
 {weather.length > 0 ? weather.map((item,index)=>{
   
@@ -58,6 +63,7 @@ return(
   </div>
   
 }):<p>Loading....</p>}
+
 
 </div>
   
